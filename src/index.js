@@ -4,6 +4,8 @@ const path = require("path");
 const socketio = require("socket.io");
 const Filter = require("bad-words");
 
+const port = process.env.PORT || 3000;
+
 const {
     generateMessage,
     generateLocationMessage,
@@ -20,7 +22,6 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
-const port = process.env.PORT || 3000;
 
 const publicDirectoryPath = path.join(__dirname, "../public");
 
@@ -93,6 +94,6 @@ io.on("connection", (socket) => {
     });
 });
 
-server.listen(3000, () => {
+server.listen(port, () => {
     console.log(`Server is up and listening at port ${port}`);
 });
